@@ -22,6 +22,7 @@ fetch(powerPriceUrl)
         
 
         app.get('/powerprice', (req, res) => {
+            res.set('Access-Control-Allow-Origin', '*');
             res.status(200).send({
                 firstLine
             })
