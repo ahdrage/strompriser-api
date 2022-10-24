@@ -2,13 +2,13 @@ const app = require('express')();
 const fetch = require('node-fetch');
 const PORT = 8080; 
 const Koa = require('koa');
-const app = new Koa();
+const apps = new Koa();
 
 
 
 app.listen(process.env.PORT || PORT, ()=> console.log("its running on port " + PORT))
 
-app.use(ctx => {
+apps.use(ctx => {
     ctx.body = 'Hello Koa';
   });
 
