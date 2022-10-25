@@ -20,8 +20,8 @@ todaysDate = yy+"-"+mm+"-"+dd
 console.log(todaysDate);
 
 
-const powerPriceUrl = `https://playground-norway-power.ffail.win/?zone=NO1&date=${todaysDate}&key=${keyPowerApi}`
-// const powerPriceUrl= `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
+// const powerPriceUrl = `https://playground-norway-power.ffail.win/?zone=NO1&date=${todaysDate}&key=${keyPowerApi}`
+const powerPriceUrl = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
 
 fetch(powerPriceUrl)
     .then(response => response.json())
