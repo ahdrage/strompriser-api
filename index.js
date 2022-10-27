@@ -56,7 +56,7 @@ fetch(powerPriceUrlToday)
     })
 
 
-fetch(powerPriceUrlTomrrow)
+fetch(powerPriceUrlTomorrow)
     .then(response => response.json())
     .then(data => {
         const firstLine = data
