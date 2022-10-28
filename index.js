@@ -1,6 +1,7 @@
 const app = require('express')();
 const fetch = require('node-fetch');
 const PORT = 8080;
+const schedule = require('node-schedule');
 require('dotenv').config();
 
 app.listen(process.env.PORT || PORT, () => console.log("its running on port " + PORT))
@@ -32,41 +33,46 @@ console.log(tomorrowsDate);
 
 
 // prod
-const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
+ const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
 const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
 
 // test
 // const powerPriceUrlToday = `https://playground-norway-power.ffail.win/?zone=NO1&date=${todaysDate}&key=${keyPowerApi}`
-// const powerPriceUrlTomrrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
+// const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
+
+
+const jobToday = schedule.scheduleJob('20 12 * * *', function () {
+    fetch(powerPriceUrlToday)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
 
 
 
-fetch(powerPriceUrlToday)
-    .then(response => response.json())
-    .then(data => {
-        const firstLine = data
-
-        app.get('/powerprice', (req, res) => {
-            res.set('Access-Control-Allow-Origin', '*');
-            res.status(200).send({
-                firstLine
+            app.get('/powerprice', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
             })
+
+        })
+})
+
+const jobTomorrow = schedule.scheduleJob('01 14 * * *', function () {
+
+    fetch(powerPriceUrlTomorrow)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
+
+            app.get('/powerpriceTomorrow', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
+            })
+
         })
 
-    })
-
-
-fetch(powerPriceUrlTomorrow)
-    .then(response => response.json())
-    .then(data => {
-        const firstLine = data
-
-        app.get('/powerpriceTomorrow', (req, res) => {
-            res.set('Access-Control-Allow-Origin', '*');
-            res.status(200).send({
-                firstLine
-            })
-        })
-
-    })
-
+})
