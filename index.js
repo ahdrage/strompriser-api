@@ -33,7 +33,7 @@ console.log(tomorrowsDate);
 
 
 // prod
- const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
+  const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
  // const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
 
 // test
@@ -46,6 +46,8 @@ console.log(tomorrowsDate);
         .then(response => response.json())
         .then(data => {
             const firstLine = data
+
+           
 
 
 
