@@ -34,11 +34,11 @@ console.log(tomorrowsDate);
 
 // prod
  const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
-const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
+ const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
 
 // test
 // const powerPriceUrlToday = `https://playground-norway-power.ffail.win/?zone=NO1&date=${todaysDate}&key=${keyPowerApi}`
-// const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
+//const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
 
 
 
@@ -58,8 +58,7 @@ const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${to
 
         })
 
-
-const jobTomorrow = schedule.scheduleJob('01 14 * * *', function () {
+  
 
     fetch(powerPriceUrlTomorrow)
         .then(response => response.json())
@@ -74,5 +73,4 @@ const jobTomorrow = schedule.scheduleJob('01 14 * * *', function () {
             })
 
         })
-
-})
+  
