@@ -41,7 +41,7 @@ const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${to
 // const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
 
 
-const jobToday = schedule.scheduleJob('20 12 * * *', function () {
+
     fetch(powerPriceUrlToday)
         .then(response => response.json())
         .then(data => {
@@ -57,7 +57,7 @@ const jobToday = schedule.scheduleJob('20 12 * * *', function () {
             })
 
         })
-})
+
 
 const jobTomorrow = schedule.scheduleJob('01 14 * * *', function () {
 
