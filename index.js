@@ -30,6 +30,7 @@ const tomorrowsDate = tomorrowYearOnly + "-" + tomorrowMonthOnly + "-" + tomorro
 console.log(todaysDate);
 console.log(tomorrowsDate);
 
+console.log(d);
 
 
 // prod
