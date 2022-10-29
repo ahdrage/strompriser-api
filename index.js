@@ -30,29 +30,37 @@ const tomorrowsDate = tomorrowYearOnly + "-" + tomorrowMonthOnly + "-" + tomorro
 console.log(todaysDate);
 console.log(tomorrowsDate);
 
-console.log(d);
+
 
 
 // prod
-  const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
+ // const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
  // const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
+
 
 // test
 // const powerPriceUrlToday = `https://playground-norway-power.ffail.win/?zone=NO1&date=${todaysDate}&key=${keyPowerApi}`
-//const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
+// const powerPriceUrlTomorrow = `https://playground-norway-power.ffail.win/?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}`
 
 
+const powerPriceUrlTodayZone1 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone1'
+const powerPriceUrlTodayZone2 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone2'
+const powerPriceUrlTodayZone3 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone3'
+const powerPriceUrlTodayZone4 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone4'
+const powerPriceUrlTodayZone5 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone5'
 
-    fetch(powerPriceUrlToday)
+ 
+
+    fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
         .then(data => {
             const firstLine = data
 
-           
+           console.log(firstLine);
 
 
 
-            app.get('/powerprice', (req, res) => {
+            app.get('/powerprice-zone1', (req, res) => {
                 res.set('Access-Control-Allow-Origin', '*');
                 res.status(200).send({
                     firstLine
@@ -61,9 +69,11 @@ console.log(d);
 
         })
 
+    
   
-
-/*     fetch(powerPriceUrlTomorrow)
+    
+/* 
+    fetch(powerPriceUrlTomorrow)
         .then(response => response.json())
         .then(data => {
             const firstLine = data
@@ -76,4 +86,5 @@ console.log(d);
             })
 
         }) */
+
   
