@@ -81,7 +81,7 @@ const job = schedule.scheduleJob('02 23 * * *', function () {
     })
   
     
-    const job = schedule.scheduleJob('02 13 * * *', function () {
+    const jobTomorrow = schedule.scheduleJob('02 13 * * *', function () {
 
 
     fetch(powerPriceUrlTomorrowZone1)
