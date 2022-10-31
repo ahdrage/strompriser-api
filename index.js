@@ -3,11 +3,26 @@ const fetch = require('node-fetch');
 const PORT = 8080;
 const schedule = require('node-schedule');
 require('dotenv').config();
+const mongoose = require("mongoose")
 
 app.listen(process.env.PORT || PORT, () => console.log("its running on port " + PORT))
 
-
 const keyPowerApi = process.env.KEY
+const userNameMongoose = process.env.USERNAME 
+const passwordMongoose = process.env.PASSWORD
+
+mongoose.connect(
+    `mongodb+srv://${userNameMongoose}:${passwordMongoose}@cluster0.lavxzg2.mongodb.net/?retryWrites=true&w=majority`,
+    () => {
+      console.log("connected");
+    },
+    e => console.error(e)
+
+  )
+
+  
+
+
 
 const d = new Date();
 
@@ -31,6 +46,22 @@ console.log(todaysDate);
 console.log(tomorrowsDate);
 
 
+let person = {
+    firstName : "John",
+    lastName  : "Doe",
+    age     : 50,
+    eyeColor  : "blue"
+  }
+
+
+/* async function addDailyPricetoDB() {
+
+    await Month.updateOne(
+      { name: "novemberArray" },
+      { $push: { monthValues: [powerPriceKW] } }
+    )
+  }
+  addDailyPricetoDB() */
 
 
 // prod
@@ -55,6 +86,9 @@ const powerPriceUrlTomorrowZone2 = 'https://strompriser-base-api-production.up.r
 const powerPriceUrlTomorrowZone3 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone3-tomorrow'
 const powerPriceUrlTomorrowZone4 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone4-tomorrow'
 const powerPriceUrlTomorrowZone5 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone5-tomorrow'
+
+
+
 
 
  
