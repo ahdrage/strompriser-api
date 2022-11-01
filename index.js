@@ -92,7 +92,7 @@ const powerPriceUrlTomorrowZone5 = 'https://strompriser-base-api-production.up.r
 
 
  
-const job = schedule.scheduleJob('52 05 * * *', function () {
+const job = schedule.scheduleJob('08 13 * * *', function () {
     fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
         .then(data => {
@@ -115,7 +115,7 @@ const job = schedule.scheduleJob('52 05 * * *', function () {
     })
   
     
-    const jobTomorrow = schedule.scheduleJob('02 13 * * *', function () {
+    const jobTomorrow = schedule.scheduleJob('08 13 * * *', function () {
 
 
     fetch(powerPriceUrlTomorrowZone1)
