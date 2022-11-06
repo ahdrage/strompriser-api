@@ -20,10 +20,6 @@ mongoose.connect(
 
   )
 
-  
-
-
-
 const d = new Date();
 
 const currentHour = d.getHours()
@@ -45,23 +41,6 @@ const tomorrowsDate = tomorrowYearOnly + "-" + tomorrowMonthOnly + "-" + tomorro
 console.log(todaysDate);
 console.log(tomorrowsDate);
 
-
-let person = {
-    firstName : "John",
-    lastName  : "Doe",
-    age     : 50,
-    eyeColor  : "blue"
-  }
-
-
-/* async function addDailyPricetoDB() {
-
-    await Month.updateOne(
-      { name: "novemberArray" },
-      { $push: { monthValues: [powerPriceKW] } }
-    )
-  }
-  addDailyPricetoDB() */
 
 
 // prod
@@ -87,12 +66,8 @@ const powerPriceUrlTomorrowZone3 = 'https://strompriser-base-api-production.up.r
 const powerPriceUrlTomorrowZone4 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone4-tomorrow'
 const powerPriceUrlTomorrowZone5 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone5-tomorrow'
 
-
-
-
-
  
-const job = schedule.scheduleJob('02 00 * * *', function () {
+const job = schedule.scheduleJob('05 23 * * *', function () {
     fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
         .then(data => {
@@ -116,7 +91,6 @@ const job = schedule.scheduleJob('02 00 * * *', function () {
   
     
     const jobTomorrow = schedule.scheduleJob('02 13 * * *', function () {
-
 
     fetch(powerPriceUrlTomorrowZone1)
         .then(response => response.json())
