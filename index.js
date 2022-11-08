@@ -67,7 +67,8 @@ const powerPriceUrlTomorrowZone4 = 'https://strompriser-base-api-production.up.r
 const powerPriceUrlTomorrowZone5 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone5-tomorrow'
 
  
-const job = schedule.scheduleJob('09 23 * * *', function () {
+const job = schedule.scheduleJob('33 07 * * *', function () {
+    
     fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
         .then(data => {
@@ -87,7 +88,85 @@ const job = schedule.scheduleJob('09 23 * * *', function () {
         })
 
     
+        fetch(powerPriceUrlTodayZone2)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
+
+           console.log(firstLine);
+
+
+
+            app.get('/powerprice-today-zone2', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
+            })
+
+        })
+
+        fetch(powerPriceUrlTodayZone3)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
+
+           console.log(firstLine);
+
+
+
+            app.get('/powerprice-today-zone3', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
+            })
+
+        })
+
+        fetch(powerPriceUrlTodayZone4)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
+
+           console.log(firstLine);
+
+
+
+            app.get('/powerprice-today-zone4', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
+            })
+
+        })
+
+        fetch(powerPriceUrlTodayZone5)
+        .then(response => response.json())
+        .then(data => {
+            const firstLine = data
+
+           console.log(firstLine);
+
+
+
+            app.get('/powerprice-today-zone5', (req, res) => {
+                res.set('Access-Control-Allow-Origin', '*');
+                res.status(200).send({
+                    firstLine
+                })
+            })
+
+        })
+
+
+
+    
     })
+
+
+
   
     
     const jobTomorrow = schedule.scheduleJob('04 13 * * *', function () {
