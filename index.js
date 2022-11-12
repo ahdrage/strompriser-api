@@ -8,17 +8,17 @@ const mongoose = require("mongoose")
 app.listen(process.env.PORT || PORT, () => console.log("its running on port " + PORT))
 
 const keyPowerApi = process.env.KEY
-const userNameMongoose = process.env.USERNAME 
+const userNameMongoose = process.env.USERNAME
 const passwordMongoose = process.env.PASSWORD
 
 mongoose.connect(
     `mongodb+srv://${userNameMongoose}:${passwordMongoose}@cluster0.lavxzg2.mongodb.net/?retryWrites=true&w=majority`,
     () => {
-      console.log("connected");
+        console.log("connected");
     },
     e => console.error(e)
 
-  )
+)
 
 const d = new Date();
 
@@ -44,8 +44,8 @@ console.log(tomorrowsDate);
 
 
 // prod
- // const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
- // const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
+// const powerPriceUrlToday = `https://norway-power.ffail.win?zone=NO1&date=${todaysDate}&key=${keyPowerApi}` 
+// const powerPriceUrlTomorrow = `https://norway-power.ffail.win?zone=NO1&date=${tomorrowsDate}&key=${keyPowerApi}` 
 
 
 // test
@@ -66,179 +66,161 @@ const powerPriceUrlTomorrowZone3 = 'https://strompriser-base-api-production.up.r
 const powerPriceUrlTomorrowZone4 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone4-tomorrow'
 const powerPriceUrlTomorrowZone5 = 'https://strompriser-base-api-production.up.railway.app/powerprice-zone5-tomorrow'
 
- 
-const job = schedule.scheduleJob('59 23 * * *', function () {
+
+let powerPriceTodayZone1 = null
+let powerPriceTodayZone2 = null
+let powerPriceTodayZone3 = null
+let powerPriceTodayZone4 = null
+let powerPriceTodayZone5 = null
+
+let powerPriceTomorrowZone1 = null
+let powerPriceTomorrowZone2 = null
+let powerPriceTomorrowZone3 = null
+let powerPriceTomorrowZone4 = null
+let powerPriceTomorrowZone5 = null
+
+
+const job = schedule.scheduleJob('02 23 * * *', function () {
 
     fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
-
-           console.log(firstLine);
-
-
-
-            app.get('/powerprice-today-zone1', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
+            powerPriceTodayZone1 = data
+            console.log(powerPriceTodayZone1);
         })
 
-    
-        fetch(powerPriceUrlTodayZone2)
+
+    fetch(powerPriceUrlTodayZone2)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
-
-           console.log(firstLine);
-
-
-
-            app.get('/powerprice-today-zone2', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
+            powerPriceTodayZone2 = data
         })
 
-        fetch(powerPriceUrlTodayZone3)
+
+    fetch(powerPriceUrlTodayZone3)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
-
-           console.log(firstLine);
-
-
-
-            app.get('/powerprice-today-zone3', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
+            powerPriceTodayZone3 = data
         })
 
-        fetch(powerPriceUrlTodayZone4)
+
+    fetch(powerPriceUrlTodayZone4)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
-
-           console.log(firstLine);
-
-
-
-            app.get('/powerprice-today-zone4', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
+            powerPriceTodayZone4 = data
         })
 
-        fetch(powerPriceUrlTodayZone5)
+    fetch(powerPriceUrlTodayZone5)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
-
-           console.log(firstLine);
-
-
-
-            app.get('/powerprice-today-zone5', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
+            powerPriceTodayZone5 = data
         })
 
+})
 
-
-    
+app.get('/powerprice-today-zone1', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTodayZone1
     })
+})
 
+app.get('/powerprice-today-zone2', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTodayZone2
+    })
+})
 
+app.get('/powerprice-today-zone3', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTodayZone3
+    })
+})
 
-  
-    
-    const jobTomorrow = schedule.scheduleJob('05 13 * * *', function () {
+app.get('/powerprice-today-zone4', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTodayZone4
+    })
+})
+
+app.get('/powerprice-today-zone5', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTodayZone5
+    })
+})
+
+const jobTomorrow = schedule.scheduleJob('02 13 * * *', function () {
 
     fetch(powerPriceUrlTomorrowZone1)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
+            powerPriceTomorrowZone1 = data
+            console.log(powerPriceTomorrowZone1);
+        })
 
-            app.get('/powerprice-tomorrow-zone1', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
-        }) 
-
-        fetch(powerPriceUrlTomorrowZone2)
+    fetch(powerPriceUrlTomorrowZone2)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
+            powerPriceTomorrowZone2 = data
+        })
 
-            app.get('/powerprice-tomorrow-zone2', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
-        }) 
-
-        fetch(powerPriceUrlTomorrowZone3)
+    fetch(powerPriceUrlTomorrowZone3)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
+            powerPriceTomorrowZone3 = data
+        })
 
-            app.get('/powerprice-tomorrow-zone3', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
-        }) 
-
-        fetch(powerPriceUrlTomorrowZone4)
+    fetch(powerPriceUrlTomorrowZone4)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
+            powerPriceTomorrowZone4 = data
+        })
 
-            app.get('/powerprice-tomorrow-zone4', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
-
-        }) 
-
-        fetch(powerPriceUrlTomorrowZone5)
+    fetch(powerPriceUrlTomorrowZone5)
         .then(response => response.json())
         .then(data => {
-            const firstLine = data
+            powerPriceTomorrowZone5 = data
+        })
 
-            app.get('/powerprice-tomorrow-zone5', (req, res) => {
-                res.set('Access-Control-Allow-Origin', '*');
-                res.status(200).send({
-                    firstLine
-                })
-            })
+})
 
-        }) 
-
+app.get('/powerprice-tomorrow-zone1', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTomorrowZone1
     })
+})
+
+app.get('/powerprice-tomorrow-zone2', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTomorrowZone2
+    })
+})
+
+app.get('/powerprice-tomorrow-zone3', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTomorrowZone3
+    })
+})
+
+
+app.get('/powerprice-tomorrow-zone4', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTomorrowZone4
+    })
+})
+
+
+app.get('/powerprice-tomorrow-zone5', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send({
+        powerPriceTomorrowZone5
+    })
+})
