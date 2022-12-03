@@ -79,8 +79,63 @@ let powerPriceTomorrowZone3 = null
 let powerPriceTomorrowZone4 = null
 let powerPriceTomorrowZone5 = null
 
+const jobRevalidateNight = schedule.scheduleJob('55 23 * * *', function () {
 
-const job = schedule.scheduleJob('02 23 * * *', function () {
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Signature': 'nYP3EqeyzZiv8dapwt9Zb3sK'
+      },
+      body: JSON.stringify({
+        some: 'data'
+      })
+    };
+    
+    fetch('https://www.strompriser.no/api/revalidate', options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+    })
+
+
+    const jobRevalidateDay = schedule.scheduleJob('02 13 * * *', function () {
+
+
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Signature': 'nYP3EqeyzZiv8dapwt9Zb3sK'
+          },
+          body: JSON.stringify({
+            some: 'data'
+          })
+        };
+        
+        fetch('https://www.strompriser.no/api/revalidate', options)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+    
+        })
+
+
+
+
+
+
+const job = schedule.scheduleJob('54 23 * * *', function () {
 
     fetch(powerPriceUrlTodayZone1)
         .then(response => response.json())
@@ -224,3 +279,7 @@ app.get('/powerprice-tomorrow-zone5', (req, res) => {
         powerPriceTomorrowZone5
     })
 })
+
+
+
+
