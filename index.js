@@ -103,7 +103,7 @@ let powerPriceTomorrowZone5 = null;
     });
 }); */
 
-const job = schedule.scheduleJob("03 13 * * *", () => {
+const job = schedule.scheduleJob("37 13 * * *", () => {
   // ZONE 1
 
   fetch(powerPriceUrlTomorrowZone1)
