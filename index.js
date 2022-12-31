@@ -103,7 +103,7 @@ let powerPriceTomorrowZone5 = null;
     });
 }); */
 
-const job = schedule.scheduleJob("37 13 * * *", () => {
+const job = schedule.scheduleJob("02 13 * * *", () => {
   // ZONE 1
 
   fetch(powerPriceUrlTomorrowZone1)
@@ -278,31 +278,31 @@ const job = schedule.scheduleJob("37 13 * * *", () => {
 });
 
 async function getDocumentRegion1() {
-  const result = await Month.findOne({ name: "Jan-region1" }).exec();
+  const result = await Month.findOne({ name: "Dec-region1" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion2() {
-  const result = await Month.findOne({ name: "Jan-region2" }).exec();
+  const result = await Month.findOne({ name: "Dec-region2" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion3() {
-  const result = await Month.findOne({ name: "Jan-region3" }).exec();
+  const result = await Month.findOne({ name: "Dec-region3" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion4() {
-  const result = await Month.findOne({ name: "Jan-region4" }).exec();
+  const result = await Month.findOne({ name: "Dec-region4" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion5() {
-  const result = await Month.findOne({ name: "Jan-region5" }).exec();
+  const result = await Month.findOne({ name: "Dec-region5" }).exec();
   // do something with the result
   return result;
 }
