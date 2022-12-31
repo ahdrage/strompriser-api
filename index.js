@@ -81,28 +81,6 @@ let powerPriceTomorrowZone3 = null;
 let powerPriceTomorrowZone4 = null;
 let powerPriceTomorrowZone5 = null;
 
-/* mongoose.connection.on("open", () => {
-  // Connection is established, now you can run your code
-
-  Month.updateOne(
-    { name: "Dec-region4" },
-    {
-      $push: {
-        prices: [
-          1.35445, 1.3675, 3.22744, 2.54684, 1.50646, 1.68241, 1.08024, 0.91594,
-          1.05313, 0.61883, 0.64663, 0.71615, 0.74766, 0.81878, 1.71736,
-        ],
-      },
-    }
-  )
-    .then(() => {
-      console.log("Month updated successfully for region 4");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}); */
-
 const job = schedule.scheduleJob("02 13 * * *", () => {
   // ZONE 1
 
@@ -278,31 +256,31 @@ const job = schedule.scheduleJob("02 13 * * *", () => {
 });
 
 async function getDocumentRegion1() {
-  const result = await Month.findOne({ name: "Dec-region1" }).exec();
+  const result = await Month.findOne({ name: "Jan-region1" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion2() {
-  const result = await Month.findOne({ name: "Dec-region2" }).exec();
+  const result = await Month.findOne({ name: "Jan-region2" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion3() {
-  const result = await Month.findOne({ name: "Dec-region3" }).exec();
+  const result = await Month.findOne({ name: "Jan-region3" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion4() {
-  const result = await Month.findOne({ name: "Dec-region4" }).exec();
+  const result = await Month.findOne({ name: "Jan-region4" }).exec();
   // do something with the result
   return result;
 }
 
 async function getDocumentRegion5() {
-  const result = await Month.findOne({ name: "Dec-region5" }).exec();
+  const result = await Month.findOne({ name: "Jan-region5" }).exec();
   // do something with the result
   return result;
 }
